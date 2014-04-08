@@ -16,9 +16,10 @@ module Letsrate
         update_rate_average(stars, dimension)
       end
     else
-      previous_rate = rates(dimension).where(:rater_id => user_id).first
+      previous_rate = rates(dimension).where(:rater_id => user.id).first
       previous_rate.stars = stars
       previous_rate.save!
+      update_rate_average(stars, dimension)
     end
   end
 
